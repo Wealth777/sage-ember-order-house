@@ -18,8 +18,8 @@ type LoginSearch = { redirect?: string; role?: Role };
 export const Route = createFileRoute("/login")({
   validateSearch: (s: Record<string, unknown>): LoginSearch => {
     const out: LoginSearch = {};
-    if (typeof s.redirect === "string") out.redirect = s.redirect;
-    if (s.role === "customer" || s.role === "staff" || s.role === "admin") out.role = s.role;
+    if (typeof s["redirect"] === "string") out.redirect = s["redirect"];
+    if (s["role"] === "customer" || s["role"] === "staff" || s["role"] === "admin") out.role = s["role"];
     return out;
   },
   head: () => ({

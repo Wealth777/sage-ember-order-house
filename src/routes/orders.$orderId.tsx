@@ -18,7 +18,7 @@ import { updateOrderStatus } from "@/services/orders";
 
 export const Route = createFileRoute("/orders/$orderId")({
   validateSearch: (s: Record<string, unknown>): { placed?: boolean } =>
-    s.placed === true || s.placed === "true" ? { placed: true } : {},
+    s["placed"] === true || s["placed"] === "true" ? { placed: true } : {},
   head: () => ({
     meta: [
       { title: `Track your order — ${RESTAURANT.name}` },

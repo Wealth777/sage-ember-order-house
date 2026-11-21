@@ -69,7 +69,10 @@ function Profile() {
         className="mt-6 space-y-4 rounded-2xl border bg-card p-5 shadow-soft sm:p-6"
         onSubmit={(e) => {
           e.preventDefault();
-          if (name.trim().length < 2) return toast.error("Please enter your name.");
+          if (name.trim().length < 2) {
+            toast.error("Please enter your name.");
+            return;
+          }
           updateProfile(user, { name, phone });
           toast.success("Profile saved");
         }}

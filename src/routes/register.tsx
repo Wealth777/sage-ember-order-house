@@ -13,7 +13,7 @@ import { AuthLayout } from "./login";
 
 export const Route = createFileRoute("/register")({
   validateSearch: (s: Record<string, unknown>): { redirect?: string } =>
-    typeof s.redirect === "string" ? { redirect: s.redirect } : {},
+    typeof s["redirect"] === "string" ? { redirect: s["redirect"] } : {},
   head: () => ({
     meta: [
       { title: `Create an account — ${RESTAURANT.name}` },

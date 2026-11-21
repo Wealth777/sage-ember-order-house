@@ -9,7 +9,7 @@ import { useCartLines } from "@/lib/store";
 import { addToCart, setQuantity } from "@/services/cart";
 import { QuantityStepper } from "./QuantityStepper";
 
-export function FoodCard({ item, categoryName }: { item: MenuItem; categoryName?: string }) {
+export function FoodCard({ item, categoryName }: { item: MenuItem; categoryName?: string | undefined }) {
   const qty = useCartLines().find((l) => l.itemId === item.id)?.quantity ?? 0;
 
   return (

@@ -11,7 +11,7 @@ import { useDb } from "@/lib/store";
 
 export const Route = createFileRoute("/menu/")({
   validateSearch: (s: Record<string, unknown>): { category?: string } =>
-    typeof s.category === "string" ? { category: s.category } : {},
+    typeof s["category"] === "string" ? { category: s["category"] } : {},
   head: () => ({
     meta: [
       { title: `Menu — ${RESTAURANT.name}` },

@@ -10,19 +10,37 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as StaffRouteImport } from './routes/staff'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminActivityRouteImport } from './routes/admin.activity'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
+import { Route as AdminMenuRouteImport } from './routes/admin.menu'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminStaffRouteImport } from './routes/admin.staff'
 import { Route as MenuIndexRouteImport } from './routes/menu.index'
 import { Route as MenuItemIdRouteImport } from './routes/menu.$itemId'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as OrdersOrderIdRouteImport } from './routes/orders.$orderId'
+import { Route as StaffIndexRouteImport } from './routes/staff.index'
+import { Route as StaffHistoryRouteImport } from './routes/staff.history'
+import { Route as StaffOrdersIndexRouteImport } from './routes/staff.orders.index'
+import { Route as StaffOrdersOrderIdRouteImport } from './routes/staff.orders.$orderId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -50,6 +68,46 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StaffRoute = StaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminActivityRoute = AdminActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCustomersRoute = AdminCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMenuRoute = AdminMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStaffRoute = AdminStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AdminRoute,
+} as any)
 const MenuIndexRoute = MenuIndexRouteImport.update({
   id: '/menu/',
   path: '/menu/',
@@ -70,18 +128,51 @@ const OrdersOrderIdRoute = OrdersOrderIdRouteImport.update({
   path: '/orders/$orderId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StaffIndexRoute = StaffIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => StaffRoute,
+} as any)
+const StaffHistoryRoute = StaffHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => StaffRoute,
+} as any)
+const StaffOrdersIndexRoute = StaffOrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => StaffRoute,
+} as any)
+const StaffOrdersOrderIdRoute = StaffOrdersOrderIdRouteImport.update({
+  id: '/orders/$orderId',
+  path: '/orders/$orderId',
+  getParentRoute: () => StaffRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/staff': typeof StaffRouteWithChildren
+  '/admin/activity': typeof AdminActivityRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/menu': typeof AdminMenuRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/staff': typeof AdminStaffRoute
   '/menu/$itemId': typeof MenuItemIdRoute
   '/orders/$orderId': typeof OrdersOrderIdRoute
+  '/staff/history': typeof StaffHistoryRoute
+  '/admin/': typeof AdminIndexRoute
   '/menu/': typeof MenuIndexRoute
   '/orders/': typeof OrdersIndexRoute
+  '/staff/': typeof StaffIndexRoute
+  '/staff/orders/$orderId': typeof StaffOrdersOrderIdRoute
+  '/staff/orders/': typeof StaffOrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -90,37 +181,74 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/admin/activity': typeof AdminActivityRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/menu': typeof AdminMenuRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/staff': typeof AdminStaffRoute
   '/menu/$itemId': typeof MenuItemIdRoute
   '/orders/$orderId': typeof OrdersOrderIdRoute
+  '/staff/history': typeof StaffHistoryRoute
+  '/admin': typeof AdminIndexRoute
   '/menu': typeof MenuIndexRoute
   '/orders': typeof OrdersIndexRoute
+  '/staff': typeof StaffIndexRoute
+  '/staff/orders/$orderId': typeof StaffOrdersOrderIdRoute
+  '/staff/orders': typeof StaffOrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/staff': typeof StaffRouteWithChildren
+  '/admin/activity': typeof AdminActivityRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/menu': typeof AdminMenuRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/staff': typeof AdminStaffRoute
   '/menu/$itemId': typeof MenuItemIdRoute
   '/orders/$orderId': typeof OrdersOrderIdRoute
+  '/staff/history': typeof StaffHistoryRoute
+  '/admin/': typeof AdminIndexRoute
   '/menu/': typeof MenuIndexRoute
   '/orders/': typeof OrdersIndexRoute
+  '/staff/': typeof StaffIndexRoute
+  '/staff/orders/$orderId': typeof StaffOrdersOrderIdRoute
+  '/staff/orders/': typeof StaffOrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/cart'
     | '/checkout'
     | '/login'
     | '/profile'
     | '/register'
+    | '/staff'
+    | '/admin/activity'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/menu'
+    | '/admin/orders'
+    | '/admin/staff'
     | '/menu/$itemId'
     | '/orders/$orderId'
+    | '/staff/history'
+    | '/admin/'
     | '/menu/'
     | '/orders/'
+    | '/staff/'
+    | '/staff/orders/$orderId'
+    | '/staff/orders/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -129,31 +257,57 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/register'
+    | '/admin/activity'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/menu'
+    | '/admin/orders'
+    | '/admin/staff'
     | '/menu/$itemId'
     | '/orders/$orderId'
+    | '/staff/history'
+    | '/admin'
     | '/menu'
     | '/orders'
+    | '/staff'
+    | '/staff/orders/$orderId'
+    | '/staff/orders'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/cart'
     | '/checkout'
     | '/login'
     | '/profile'
     | '/register'
+    | '/staff'
+    | '/admin/activity'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/menu'
+    | '/admin/orders'
+    | '/admin/staff'
     | '/menu/$itemId'
     | '/orders/$orderId'
+    | '/staff/history'
+    | '/admin/'
     | '/menu/'
     | '/orders/'
+    | '/staff/'
+    | '/staff/orders/$orderId'
+    | '/staff/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
+  StaffRoute: typeof StaffRouteWithChildren
   MenuItemIdRoute: typeof MenuItemIdRoute
   OrdersOrderIdRoute: typeof OrdersOrderIdRoute
   MenuIndexRoute: typeof MenuIndexRoute
@@ -167,6 +321,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -204,6 +365,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/staff': {
+      id: '/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof StaffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/activity': {
+      id: '/admin/activity'
+      path: '/activity'
+      fullPath: '/admin/activity'
+      preLoaderRoute: typeof AdminActivityRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/customers': {
+      id: '/admin/customers'
+      path: '/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AdminCustomersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/menu': {
+      id: '/admin/menu'
+      path: '/menu'
+      fullPath: '/admin/menu'
+      preLoaderRoute: typeof AdminMenuRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/staff': {
+      id: '/admin/staff'
+      path: '/staff'
+      fullPath: '/admin/staff'
+      preLoaderRoute: typeof AdminStaffRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/menu/': {
       id: '/menu/'
       path: '/menu'
@@ -232,16 +449,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrdersOrderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/staff/': {
+      id: '/staff/'
+      path: '/'
+      fullPath: '/staff/'
+      preLoaderRoute: typeof StaffIndexRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/staff/history': {
+      id: '/staff/history'
+      path: '/history'
+      fullPath: '/staff/history'
+      preLoaderRoute: typeof StaffHistoryRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/staff/orders/': {
+      id: '/staff/orders/'
+      path: '/orders'
+      fullPath: '/staff/orders/'
+      preLoaderRoute: typeof StaffOrdersIndexRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/staff/orders/$orderId': {
+      id: '/staff/orders/$orderId'
+      path: '/orders/$orderId'
+      fullPath: '/staff/orders/$orderId'
+      preLoaderRoute: typeof StaffOrdersOrderIdRouteImport
+      parentRoute: typeof StaffRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminActivityRoute: typeof AdminActivityRoute
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminCustomersRoute: typeof AdminCustomersRoute
+  AdminMenuRoute: typeof AdminMenuRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminStaffRoute: typeof AdminStaffRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminActivityRoute: AdminActivityRoute,
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminCustomersRoute: AdminCustomersRoute,
+  AdminMenuRoute: AdminMenuRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminStaffRoute: AdminStaffRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface StaffRouteChildren {
+  StaffHistoryRoute: typeof StaffHistoryRoute
+  StaffIndexRoute: typeof StaffIndexRoute
+  StaffOrdersOrderIdRoute: typeof StaffOrdersOrderIdRoute
+  StaffOrdersIndexRoute: typeof StaffOrdersIndexRoute
+}
+
+const StaffRouteChildren: StaffRouteChildren = {
+  StaffHistoryRoute: StaffHistoryRoute,
+  StaffIndexRoute: StaffIndexRoute,
+  StaffOrdersOrderIdRoute: StaffOrdersOrderIdRoute,
+  StaffOrdersIndexRoute: StaffOrdersIndexRoute,
+}
+
+const StaffRouteWithChildren = StaffRoute._addFileChildren(StaffRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
+  StaffRoute: StaffRouteWithChildren,
   MenuItemIdRoute: MenuItemIdRoute,
   OrdersOrderIdRoute: OrdersOrderIdRoute,
   MenuIndexRoute: MenuIndexRoute,
