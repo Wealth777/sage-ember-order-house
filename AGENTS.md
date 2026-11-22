@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Demo data lives in the browser: `src/lib/store.ts` (localStorage for shared data, sessionStorage for the signed-in user per tab). Why: a no-server prototype where several tabs act as different roles and update live.
+- Components read data only through `useDb`/hooks and change it only through `src/services/*`. Why: swapping in a real backend later means rewriting services, not pages.
+- Sample data stays in `src/data/mock-data.ts`; bump `DB_VERSION` when its shape changes. Why: keeps mock data separate and forces old browser copies to reseed.
+- Order status rules live in `src/lib/order-workflow.ts` and are covered by `src/test/order-workflow.test.ts`. Why: one source of truth for who can move an order where.
+- Brand name and currency come from `src/lib/config.ts`. Why: one place to rebrand for a client.
